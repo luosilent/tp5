@@ -16,13 +16,13 @@ class User
     // 创建用户数据页面
     public function create()
     {
-        return view('user/create');
+        return view('index/user/create');
     }
     // 新增用户数据
     public function add()
     {
         $user = new UserModel;
-        if ($user->allowField(true)->save(input('post.'))) {
+        if ($user->allowField(true)->validate(true)->save(input('post.'))) {
             return '用户[ ' . $user->nickname . ':' . $user->id . ' ]新增成功';
         } else {
             return $user->getError();
